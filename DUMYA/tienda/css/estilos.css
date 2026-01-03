@@ -1,0 +1,196 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: black;
+}
+
+/* FUENTES */
+@font-face {
+    font-family: "logo";
+    src: url(../fonts/santa_natale/SantaNatale.ttf);
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+}
+
+/* HEADER */
+header {
+    position: relative;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+header::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.3);
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.logo {
+    font-size: 100px;
+    z-index: 2;
+    color: #F4D35E;
+    font-family: "logo";
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.botones-header a {
+    position: absolute;
+    top: 20px;
+    padding: 10px 20px;
+    background-color: #F4D35E;
+    border-radius: 10px;
+    font-weight: bold;
+    z-index: 2;
+    transition: 0.3s;
+}
+
+.iniciar { right: 10px; }
+.registrar { right: 150px; }
+
+.botones-header a:hover {
+    background-color: #F49F1C;
+    color: white;
+}
+
+/* PRODUCTOS DESTACADOS */
+.destacados {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.destacados h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #F49F1C;
+}
+
+.productos {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) { .productos { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 800px) { .productos { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .productos { grid-template-columns: 1fr; } }
+
+.producto {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.producto img {
+    width: 90%;       /* reduce un poco el ancho dentro de la tarjeta */
+    height: 200px;    /* reduce la altura */
+    object-fit: cover;
+    margin: 10px auto; /* centra la imagen dentro del producto */
+    border-radius: 10px; /* opcional, bordes redondeados */
+    gap: 3px;
+}
+
+.producto h3 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.producto p {
+    color: #F49F1C;
+    font-weight: bold;
+}
+
+.producto:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* SOBRE NOSOTROS */
+.sobre-nosotros {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #f9f4f0;
+}
+
+.sobre-nosotros h2 {
+    font-size: 2rem;
+    color: #F49F1C;
+    margin-bottom: 20px;
+}
+
+.sobre-nosotros p {
+    max-width: 800px;
+    margin: auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* NEWSLETTER */
+.newsletter {
+    background-color: #F4D35E;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.newsletter input {
+    padding: 10px;
+    width: 250px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.newsletter button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #F49F1C;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.newsletter button:hover {
+    background-color: #e07b00;
+}
+
+/* FOOTER */
+footer {
+    
+    
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+footer .redes a {
+    margin: 0 10px;
+    color: #F4D35E;
+    text-decoration: none;
+}
+
+footer .redes a:hover {
+    color: #F49F1C;
+}
