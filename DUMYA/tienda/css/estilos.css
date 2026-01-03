@@ -147,13 +147,13 @@ header::after {
 }
 
 /* NEWSLETTER */
-.newsletter {
+. {
     background-color: #F4D35E;
     padding: 50px 20px;
     text-align: center;
 }
 
-.newsletter input {
+.input {
     padding: 10px;
     width: 250px;
     border: none;
@@ -161,7 +161,7 @@ header::after {
     margin-right: 10px;
 }
 
-.newsletter button {
+.button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
