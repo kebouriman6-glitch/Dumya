@@ -1,12 +1,22 @@
+CREATE DATABASE IF NOT EXISTS dumya;
 
-SHOW TABLES;
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    correo VARCHAR(255),
+    contraseña VARCHAR(255),
+    nombre VARCHAR(255)
+);
+
 
 CREATE TABLE productos (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,xw
+    nombre VARCHAR(100) NOT NULL,
     precio DECIMAL(6,2) NOT NULL,
     imagen VARCHAR(255) NOT NULL
 );
+
+SHOW TABLES;
+
 
 INSERT INTO productos (nombre, precio, imagen) VALUES
 ('Polene Camel', 45.00, '1polenecamel.webp'),
