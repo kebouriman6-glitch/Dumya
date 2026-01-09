@@ -8,7 +8,7 @@
 body {
     min-height: 100vh;
     display: flex;
-    flex-direction: column; /* 👈 clave para título arriba */
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
     background: linear-gradient(135deg, beige, #f5f1e3);
