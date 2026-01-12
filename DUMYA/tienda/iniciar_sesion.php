@@ -1,19 +1,29 @@
 <?php
+session_start(); // 🔹 Inicia sesión al principio
+
 $conexion = new mysqli("127.0.0.1", "admin", "1234", "dumya");
+
+$errores = [];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $correo = $_POST["correo"];
     $contraseña = $_POST["contraseña"];
-    $errores = [];
 
-    $busqueda = $conexion->query("SELECT correo,nombre,contraseña FROM usuarios WHERE correo = '$correo'");
+    // Consulta segura
+    $stmt = $conexion->prepare("SELECT id, nombre, contraseña FROM usuarios WHERE correo = ?");
+    $stmt->bind_param("s", $correo);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
 
-    if ($fila = $busqueda->fetch_assoc()) {
+    if ($fila = $resultado->fetch_assoc()) {
 
         if (password_verify($contraseña, $fila["contraseña"])) {
 
-            
+            // 🔹 Guardar datos del usuario en sesión
+            $_SESSION["usuario_id"] = $fila["id"];
+            $_SESSION["usuario_nombre"] = $fila["nombre"];
+
             header("Location: productos.php");
             exit;
 
@@ -22,36 +32,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
     } else {
-        $errores["correo"] = "Correo no existente";  
+        $errores["correo"] = "Correo no existente";
     }
 }
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <h1 class="titulo">Iniciar sesión</h1>    <title>Iniciar sesión</title>
+    <title>Iniciar sesión | DUMYA</title>
     <link rel="stylesheet" href="css/iniciar_sesion.css">
-
-
 </head>
 <body>
-    <form action="?" method="POST">
-        <input type="text" name="correo" placeholder="Correo">
-        <?php if(isset($errores["correo"])): ?>
-            <p><?= $errores["correo"] ?></p>
-        <?php endif; ?>
 
-        <input type="password" name="contraseña" placeholder="Contraseña">
-        <?php if(isset($errores["contraseña"])): ?>
-            <p><?= $errores["contraseña"] ?></p>
-        <?php endif; ?>
+<h1 class="titulo">Iniciar sesión</h1>
 
-        <button type="submit">Iniciar sesión</button>
-        <a href="productos.php"></a>
-        
-    </form>
+<form action="" method="POST">
+    <input type="text" name="correo" placeholder="Correo" required>
+    <?php if(isset($errores["correo"])): ?>
+        <p class="error"><?= $errores["correo"] ?></p>
+    <?php endif; ?>
+
+    <input type="password" name="contraseña" placeholder="Contraseña" required>
+    <?php if(isset($errores["contraseña"])): ?>
+        <p class="error"><?= $errores["contraseña"] ?></p>
+    <?php endif; ?>
+
+    <button type="submit">Iniciar sesión</button>
+</form>
+
 </body>
 </html>
